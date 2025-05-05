@@ -13,7 +13,6 @@
   },
   "dependencies": {
     "babel-preset-babili": "^0.0.9",
-    "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
     "gulp-html-minifier": "^0.1.8",
     "gulp-postcss": "^6.2.0",
@@ -21,5 +20,8 @@
     "postcss": "^5.2.8",
     "postcss-cssnext": "^2.9.0",
     "through2": "^2.0.3"
+  },
+  "devDependencies": {
+    "gulp": "^4.0.2"
   }
 }
