@@ -2,29 +2,31 @@ const gulp = require('gulp');
 const postcss = require('gulp-postcss');
 const cssnext = require('postcss-cssnext');
 const babel = require('gulp-babel');
-const through = require('through2');
-const htmlMinifier = require('gulp-html-minifier');
 const replace = require('gulp-replace');
+const htmlMinifier = require('gulp-html-minifier');
 
 const pkg = require('./package.json');
 
-gulp.task('build-css', _ =>
-  gulp.src('app/*.css')
+// CSS build task
+function buildCss() {
+  return gulp.src('app/*.css')
     .pipe(postcss([cssnext]))
-    .pipe(gulp.dest('dist'))
-);
+    .pipe(gulp.dest('dist'));
+}
 
-gulp.task('build-js', _ =>
-  gulp.src('app/*.js')
+// JS build task
+function buildJs() {
+  return gulp.src('app/*.js')
     .pipe(replace('{%VERSION%}', pkg.version))
     .pipe(babel({
       presets: ['babili']
     }))
-    .pipe(gulp.dest('dist'))
-);
+    .pipe(gulp.dest('dist'));
+}
 
-gulp.task('build-html', _ =>
-  gulp.src('app/index.html')
+// HTML build task
+function buildHtml() {
+  return gulp.src('app/index.html')
     .pipe(htmlMinifier({
       minifyCSS: true,
       minifyJS: false,
@@ -32,12 +34,18 @@ gulp.task('build-html', _ =>
       collapseWhitespace: true,
       customAttrCollapse: /^d$/
     }))
-    .pipe(gulp.dest('dist'))
-);
+    .pipe(gulp.dest('dist'));
+}
 
-gulp.task('copy', _ =>
-  gulp.src(['app/images/**/*', 'app/manifest.json'], {base: 'app'})
-    .pipe(gulp.dest('dist'))
-)
+// Copy task
+function copyAssets() {
+  return gulp.src(['app/images/**/*', 'app/manifest.json'], { base: 'app' })
+    .pipe(gulp.dest('dist'));
+}
 
-gulp.task('default', ['build-css', 'build-js', 'build-html', 'copy']);
+// Export tasks
+exports.buildCss = buildCss;
+exports.buildJs = buildJs;
+exports.buildHtml = buildHtml;
+exports.copyAssets = copyAssets;
+exports.default = gulp.parallel(buildCss, buildJs, buildHtml, copyAssets);
