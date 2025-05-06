@@ -28,8 +28,30 @@
       <p class="copyright">Made with 🍌 by <a href="https://twitter.com/DasSurma">Surma</a>, Code on <a href="https://github.com/tswilliams87/milkshake">GitHub</a></p>
     </header>
 
-    <tinderforbananas-item class="item item--top"></tinderforbananas-item>
-    <tinderforbananas-item class="item item--next hidden" inmovable></tinderforbananas-item>
+    <!-- These are the swipeable banana cards -->
+    <tinderforbananas-item class="item item--top">
+      <picture></picture>
+      <div class="item__details">
+        <span class="item__details__name"></span>,
+        <span class="item__details__age"></span>
+        <br>
+        <span class="item__details__job"></span>
+        <br>
+        <span class="item__details__distance"></span>
+      </div>
+    </tinderforbananas-item>
+
+    <tinderforbananas-item class="item item--next hidden" inmovable>
+      <picture></picture>
+      <div class="item__details">
+        <span class="item__details__name"></span>,
+        <span class="item__details__age"></span>
+        <br>
+        <span class="item__details__job"></span>
+        <br>
+        <span class="item__details__distance"></span>
+      </div>
+    </tinderforbananas-item>
 
     <div class="controls">
       <button class="control control--nope"><svg></svg></button>
@@ -49,7 +71,7 @@
   </section>
 </main>
 
-<!-- Script order matters! -->
+<!-- Correct load order -->
 <script src="/custom-elements.min.js" defer></script>
 <script src="/helper.js" defer></script>
 <script src="/ce-details.js" defer></script>
