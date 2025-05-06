@@ -54,13 +54,25 @@ customElements.define('tinderforbananas-item', class extends HTMLElement {
     this._selected = value;
     this._updateBindings();
   }
-
   _updateBindings() {
-    this.querySelector('.item__details__name').textContent = `${this.data.name}`;
-    this.querySelector('.item__details__age').textContent = `${this.data.age}`;
-    this.querySelector('.item__details__job').textContent = `${this.data.job}`;
-    this.querySelector('picture').style.backgroundImage = `url('${this.data.images[this.selected]}')`;
+    if (!this.data) return;
+  
+    const nameEl = this.querySelector('.item__details__name');
+    if (nameEl) nameEl.textContent = `${this.data.name}`;
+  
+    const ageEl = this.querySelector('.item__details__age');
+    if (ageEl) ageEl.textContent = `${this.data.age}`;
+  
+    const jobEl = this.querySelector('.item__details__job');
+    if (jobEl) jobEl.textContent = `${this.data.job}`;
+  
+    const distanceEl = this.querySelector('.item__details__distance');
+    if (distanceEl) distanceEl.textContent = `${this.data.distance}km away`;
+  
+    const picture = this.querySelector('picture');
+    if (picture) picture.style.backgroundImage = `url('${this.data.images[this.selected]}')`;
   }
+  
 
   attributeChangedCallback(name, oldValue, newValue) {
     this._inmovable = newValue !== null;
