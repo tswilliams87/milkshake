@@ -10,10 +10,10 @@ const pkg = require('./package.json');
 
 // CSS build task
 function buildCss() {
-  return gulp.src('app/*.css')
-    .pipe(postcss([cssnext()]))
-    .pipe(gulp.dest('dist'));
+  return gulp.src('app/*.css', { base: 'app' })
+    .pipe(gulp.dest('dist'));      // Just copy as-is
 }
+
 
 // JS build task
 function buildJs() {
