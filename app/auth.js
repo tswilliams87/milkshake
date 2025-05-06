@@ -8,15 +8,17 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, password })
     });
+  
     const result = await res.json();
-    if (result.success) window.location.href = 'index.html';
+    if (result.success) window.location.href = '/app/index.html';
     else alert('Login failed');
   });
   
   document.getElementById('signup-button').addEventListener('click', () => {
-    window.location.href = 'signup.html';
+    window.location.href = '/app/signup.html';
   });
   
   document.getElementById('guest-button').addEventListener('click', () => {
-    window.location.href = 'index.html';
+    window.location.href = '/app/index.html';
   });
+  

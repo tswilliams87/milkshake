@@ -24,9 +24,9 @@ function buildJs() {
     .pipe(gulp.dest('dist'));
 }
 
-// HTML build task — updated to include ALL html files
+// HTML build task
 function buildHtml() {
-  return gulp.src('app/*.html')
+  return gulp.src('app/index.html')
     .pipe(htmlMinifier({
       minifyCSS: true,
       minifyJS: false,
@@ -37,13 +37,13 @@ function buildHtml() {
     .pipe(gulp.dest('dist'));
 }
 
-// Copy assets (images + manifest)
+// Copy task
 function copyAssets() {
   return gulp.src(['app/images/**/*', 'app/manifest.json'], { base: 'app' })
     .pipe(gulp.dest('dist'));
 }
 
-// Export all tasks
+// Export tasks
 exports.buildCss = buildCss;
 exports.buildJs = buildJs;
 exports.buildHtml = buildHtml;
