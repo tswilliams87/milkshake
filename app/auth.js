@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const result = await res.json();
         if (result.success) {
-          window.location.href = '/app/index.html';
+          window.location.href = '/index.html';
         } else {
           alert('Login failed');
         }
@@ -32,13 +32,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (signupBtn) {
     signupBtn.addEventListener('click', () => {
-      window.location.href = '/app/signup.html';
+      window.location.href = '/signup.html';
     });
   }
 
   if (guestBtn) {
     guestBtn.addEventListener('click', () => {
-      window.location.href = '/app/index.html';
+      window.location.href = '/index.html';
     });
   }
 });

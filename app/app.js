@@ -5,7 +5,7 @@
       name: 'Saba',
       age: 25,
       job: 'Phillippines',
-      images: ['images/testpic4.jpg', 'images/testpic2.jpg', 'images/testpic1.jpg'],
+      images: ['/images/testpic4.jpg', '/images/testpic2.jpg', '/images/testpic1.jpg'],
       distance: 25,
       description: 'Swipe for me! You’ll find me very ap-peel-ing'
     },
@@ -14,16 +14,16 @@
       name: 'Plantain',
       age: 28,
       job: 'Nicaragua',
-      images: ['images/testpic2.jpg', 'images/testpic4.jpg'],
+      images: ['/images/testpic2.jpg', '/images/testpic4.jpg'],
       distance: 4,
-      description: 'Lorem ipsum dolor sit amet, quo ad cibo viris legimus, simul delicata constituto per cu. Pro an commodo liberavisse, cu mutat sensibus tractatos est, animal similique ei nec. Et est molestie phaedrum, ut eam quot meliore. Usu hendrerit complectitur at, at iriure habemus facilisis sit. An eos probo graece.Propriae contentiones eu ius, pro eu ignota liberavisse disputationi, duo ea docendi consectetuer. Cum posse semper ea, ius invidunt qualisque scriptorem cu, ullum reprehendunt pro eu. Illud erant reformidans usu in. Ad vim quem choro iracundia. Ius in case mnesarchum.Duis signiferumque sed cu. Ut duo error congue intellegebat, fugit nostrud urbanitas ei has. Copiosae dissentias te eam, dicta efficiendi mea ad. Numquam persequeris te sea, ad populo graeci per, et mea aperiam noluisse interesset.Malorum abhorreant pri eu, no vidit quaeque mei, usu in dico meliore philosophia. Causae verterem pri in, te case suavitate nam. In ius ignota sanctus. Propriae repudiandae ad sit, gubergren ullamcorper usu ei. Ne vis fierent mediocritatem. Id nominati maluisset ius, soluta graece lobortis ut his, vocibus copiosae placerat est ad.Duo alia ferri impetus ei, deleniti scriptorem comprehensam ius an. Mea ne labore oblique adolescens. Ne velit albucius salutatus quo, cum iudico eripuit bonorum ad. Stet suscipit sea ad. Nec prompta suscipit mandamus at.'
+      description: 'Lorem ipsum dolor sit amet...'
     },
     {
       id: 2,
       name: 'Banan',
       age: 21,
       job: 'Finnland',
-      images: ['images/testpic3.jpg', 'images/testpic2.jpg'],
+      images: ['/images/testpic3.jpg', '/images/testpic2.jpg'],
       distance: 9,
       description: 'I like fruits!'
     },
@@ -32,7 +32,7 @@
       name: 'Actually an orange',
       age: 12,
       job: 'Scammer',
-      images: ['images/testpic1.jpg', 'images/testpic2.jpg'],
+      images: ['/images/testpic1.jpg', '/images/testpic2.jpg'],
       distance: 2455,
       description: 'Follow me on my totally banana-related Instagram 📸'
     }
@@ -73,7 +73,7 @@
 
   function hookupButtons() {
     const details = document.querySelector('.view--details');
-    document.querySelectorAll('.control--like').forEach(btn => 
+    document.querySelectorAll('.control--like').forEach(btn =>
       btn.addEventListener('click', _ => {
         let p = Promise.resolve();
         if (!details.classList.contains('hidden')) {
@@ -91,7 +91,7 @@
         p.then(_ => document.querySelector('.item--top').nope());
       })
     );
-    document.querySelectorAll('.control--superlike').forEach(btn => 
+    document.querySelectorAll('.control--superlike').forEach(btn =>
       btn.addEventListener('click', _ => {
         let p = Promise.resolve();
         if (!details.classList.contains('hidden')) {
@@ -114,15 +114,14 @@
     const image = document.querySelector('.view--swipelist .item--top picture');
     details.querySelector('tinderforbananas-details').data = data;
 
-    // Let’s do FLIP!
     const start = image.getBoundingClientRect();
-    
+
     swipelist.classList.add('overlaid');
     details.classList.remove('hidden');
 
     const target = carousel.getBoundingClientRect();
     carousel.style.transformOrigin = 'top left';
-    carousel.style.transform = `scaleX(${start.width/target.width}) scaleY(${start.height/target.height}) translate(${start.left - target.left}px, ${start.top - target.top}px)`;   
+    carousel.style.transform = `scaleX(${start.width / target.width}) scaleY(${start.height / target.height}) translate(${start.left - target.left}px, ${start.top - target.top}px)`;
     return requestAnimationFramePromise()
       .then(_ => requestAnimationFramePromise())
       .then(_ => {
@@ -138,7 +137,6 @@
         carousel.style.transition = '';
         carousel.style.transformOrigin = '';
       });
-
   }
 
   function hideDetails(event) {
@@ -166,7 +164,7 @@
     return requestAnimationFramePromise()
       .then(_ => requestAnimationFramePromise())
       .then(_ => {
-        carousel.style.transform = `scaleX(${target.width/start.width}) scaleY(${target.height/start.height}) translate(${target.left - start.left}px, ${target.top - start.top}px)`;   
+        carousel.style.transform = `scaleX(${target.width / start.width}) scaleY(${target.height / start.height}) translate(${target.left - start.left}px, ${target.top - start.top}px)`;
         detailsText1.style.transform = '';
         detailsText2.style.transform = '';
         detailsNav.style.transform = '';
@@ -210,5 +208,6 @@
     hookupButtons();
     installServiceWorker();
   }
+
   document.addEventListener('DOMContentLoaded', init);
 })();
