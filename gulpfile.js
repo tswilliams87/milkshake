@@ -26,7 +26,7 @@ function buildJs() {
 
 // HTML build task
 function buildHtml() {
-  return gulp.src('app/*.html')
+  return gulp.src('app/index.html')
     .pipe(htmlMinifier({
       minifyCSS: true,
       minifyJS: false,
