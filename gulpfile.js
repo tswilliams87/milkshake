@@ -27,7 +27,7 @@ function buildJs() {
 if (result.success) window.location.href = 'index.html'; // Redirect to index.html
 // HTML build task
 function buildHtml() {
-  return gulp.src('app/app.html')
+  return gulp.src('app/index.html')
     .pipe(htmlMinifier({
       minifyCSS: true,
       minifyJS: false,
