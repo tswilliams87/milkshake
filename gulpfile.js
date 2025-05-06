@@ -23,10 +23,11 @@ function buildJs() {
     }))
     .pipe(gulp.dest('dist'));
 }
-
+// filepath: /Users/twilliams/Documents/GitHub/milkshake/app/auth.js
+if (result.success) window.location.href = 'index.html'; // Redirect to index.html
 // HTML build task
 function buildHtml() {
-  return gulp.src('app/index.html')
+  return gulp.src('app/app.html')
     .pipe(htmlMinifier({
       minifyCSS: true,
       minifyJS: false,

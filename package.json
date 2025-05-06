@@ -1,12 +1,13 @@
 {
-  "name": "tinderforbananas.com",
-  "version": "1.1.5",
-  "description": "Tinder For Bananas",
+  "name": "milkshake",
+  "version": "1",
+  "description": "Tinder For milkshakes",
   "repository": {
     "type": "git",
-    "url": "https://github.com/surma/tinderforbananas.com"
+    "url": "https://github.com/tswilliams87/milkshake"
   },
-  "author": "Surma <surma@surma.link>",
+  "author": "twilliams87",
+  
   "license": "Apache-2.0",
   "scripts": {
     "build": "gulp"
