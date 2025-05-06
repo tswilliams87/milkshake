@@ -1,27 +1,25 @@
 {
-  "name": "tinderforbananas.com",
+  "name": "milkshake",
   "version": "1.1.5",
-  "description": "Tinder For Bananas",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/surma/tinderforbananas.com"
-  },
-  "author": "Surma <surma@surma.link>",
-  "license": "Apache-2.0",
+  "description": "A rebranded version of Tinder but for milkshakes",
+  "main": "gulpfile.js",
   "scripts": {
     "build": "gulp"
   },
-  "dependencies": {
-    "babel-preset-babili": "^0.0.9",
-    "gulp-babel": "^6.1.2",
-    "gulp-postcss": "^6.2.0",
-    "gulp-replace": "^0.5.4",
-    "postcss": "^5.2.8",
-    "postcss-cssnext": "^2.9.0",
-    "through2": "^2.0.3"
-  },
   "devDependencies": {
+    "@babel/core": "^7.24.4",
+    "@babel/preset-env": "^7.24.4",
     "gulp": "^4.0.2",
-    "gulp-htmlmin": "^5.0.1"
+    "gulp-babel": "^8.0.0",
+    "gulp-htmlmin": "^5.0.1",
+    "gulp-postcss": "^9.0.1",
+    "gulp-replace": "^1.1.4",
+    "postcss-cssnext": "^3.1.0"
+  },
+  "author": "tswilliams87",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tswilliams87/milkshake.git"
   }
 }

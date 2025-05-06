@@ -3,42 +3,46 @@ const postcss = require('gulp-postcss');
 const cssnext = require('postcss-cssnext');
 const babel = require('gulp-babel');
 const replace = require('gulp-replace');
-const htmlmin = require('gulp-htmlmin');
+const htmlMinifier = require('gulp-htmlmin');
+
 
 const pkg = require('./package.json');
 
-// CSS build task (preserve app/ path)
+// CSS build task
 function buildCss() {
-  return gulp.src('app/*.css', { base: 'app' })
-    .pipe(postcss([cssnext]))
+  return gulp.src('app/*.css')
+    .pipe(postcss([cssnext()]))
     .pipe(gulp.dest('dist'));
 }
 
-// JS build task (preserve app/ path)
+// JS build task
 function buildJs() {
-  return gulp.src('app/*.js', { base: 'app' })
+  return gulp.src('app/*.js')
     .pipe(replace('{%VERSION%}', pkg.version))
     .pipe(babel({
-      presets: ['babili']
+      presets: ['@babel/preset-env']
     }))
     .pipe(gulp.dest('dist'));
 }
 
-// HTML build task (preserve app/ path)
+// HTML build task
 function buildHtml() {
-  return gulp.src('app/*.html', { base: 'app' })
-    .pipe(htmlmin({
+  return gulp.src('app/*.html')
+    .pipe(htmlMinifier({
       collapseWhitespace: true,
       removeComments: true
     }))
     .pipe(gulp.dest('dist'));
 }
 
-// Asset copy (images + manifest, preserve structure)
+// Copy assets
 function copyAssets() {
   return gulp.src(['app/images/**/*', 'app/manifest.json'], { base: 'app' })
     .pipe(gulp.dest('dist'));
 }
 
-// Default task
+exports.buildCss = buildCss;
+exports.buildJs = buildJs;
+exports.buildHtml = buildHtml;
+exports.copyAssets = copyAssets;
 exports.default = gulp.parallel(buildCss, buildJs, buildHtml, copyAssets);
