@@ -1,18 +1,18 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <title>Milkshake</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta property="og:title" content="Milkshake" />
   <meta name="twitter:title" content="Milkshake" />
-  <meta property="og:type" content="article" />
+  <meta property="og:type" content="website" />
   <meta property="og:url" content="https://milkshake.com/" />
   <meta property="og:image" content="/images/bigbanan.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="/images/bigbanan.jpg" />
-  <meta property="og:description" content="It’s like Tinder, but for Milkshakes now called Milkshake!" />
-  <meta name="twitter:description" content="It’s like Tinder, but for Milkshakes now called Milkshake!" />
+  <meta property="og:description" content="It’s like Tinder, but for 🍌 — now called Milkshake!" />
+  <meta name="twitter:description" content="It’s like Tinder, but for 🍌 — now called Milkshake!" />
   <meta name="twitter:site" content="MilkshakeApp" />
   <link href="https://fonts.googleapis.com/css?family=Nunito+Sans" rel="stylesheet">
   <link rel="stylesheet" href="/styles.css">
@@ -28,22 +28,35 @@
       <p class="copyright">Made with 🍌 by <a href="https://twitter.com/DasSurma">Surma</a>, Code on <a href="https://github.com/tswilliams87/milkshake">GitHub</a></p>
     </header>
 
-    <tinderforbananas-item class="item item--next hidden" inmovable>
-      <picture></picture>
-      <div class="item__details">
-        <span class="item__details__field">...</span>
-      </div>
-    </tinderforbananas-item>
+    <tinderforbananas-item class="item item--top"></tinderforbananas-item>
+    <tinderforbananas-item class="item item--next hidden" inmovable></tinderforbananas-item>
+
+    <div class="controls">
+      <button class="control control--nope"><svg></svg></button>
+      <button class="control control--superlike"><svg></svg></button>
+      <button class="control control--like"><svg></svg></button>
+    </div>
+  </section>
+
+  <section class="view view--details hidden">
+    <tinderforbananas-carousel></tinderforbananas-carousel>
+    <tinderforbananas-details></tinderforbananas-details>
+    <nav>
+      <button class="control control--nope"></button>
+      <button class="control control--superlike"></button>
+      <button class="control control--like"></button>
+    </nav>
   </section>
 </main>
 
-<script src="/custom-elements.min.js"></script>
-<script src="/helper.js"></script>
-<script src="/ce-details.js"></script>
-<script src="/ce-carousel.js"></script>
-<script src="/ce-item.js"></script>
-<script src="/app.js"></script>
-<script src="/sw.js"></script>
+<!-- Script order matters! -->
+<script src="/custom-elements.min.js" defer></script>
+<script src="/helper.js" defer></script>
+<script src="/ce-details.js" defer></script>
+<script src="/ce-carousel.js" defer></script>
+<script src="/ce-item.js" defer></script>
+<script src="/app.js" defer></script>
+<script src="/sw.js" defer></script>
 
 </body>
 </html>
