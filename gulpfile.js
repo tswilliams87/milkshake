@@ -3,7 +3,7 @@ const postcss = require('gulp-postcss');
 const cssnext = require('postcss-cssnext');
 const babel = require('gulp-babel');
 const replace = require('gulp-replace');
-const htmlmin = require('gulp-htmlmin'); // Modern HTML minifier
+const htmlmin = require('gulp-htmlmin');
 
 const pkg = require('./package.json');
 
@@ -14,7 +14,7 @@ function buildCss() {
     .pipe(gulp.dest('dist'));
 }
 
-// JS build task
+// JS build task (includes ALL JS, including auth.js, signup.js, etc.)
 function buildJs() {
   return gulp.src('app/*.js')
     .pipe(replace('{%VERSION%}', pkg.version))
@@ -24,7 +24,7 @@ function buildJs() {
     .pipe(gulp.dest('dist'));
 }
 
-// HTML build task — using gulp-htmlmin
+// HTML build task (minify all HTML pages)
 function buildHtml() {
   return gulp.src('app/*.html')
     .pipe(htmlmin({
@@ -34,15 +34,11 @@ function buildHtml() {
     .pipe(gulp.dest('dist'));
 }
 
-// Copy assets
+// Asset copy (e.g., images and manifest)
 function copyAssets() {
   return gulp.src(['app/images/**/*', 'app/manifest.json'], { base: 'app' })
     .pipe(gulp.dest('dist'));
 }
 
-// Export tasks
-exports.buildCss = buildCss;
-exports.buildJs = buildJs;
-exports.buildHtml = buildHtml;
-exports.copyAssets = copyAssets;
+// Default task
 exports.default = gulp.parallel(buildCss, buildJs, buildHtml, copyAssets);
