@@ -23,7 +23,7 @@
       name: 'Banan',
       age: 21,
       job: 'Finnland',
-      images: ['/app/images/testpic3.jpg', '/images/testpic2.jpg'],
+      images: ['/app/images/testpic3.jpg', '/app/images/testpic2.jpg'],
       distance: 9,
       description: 'I like fruits!'
     },
@@ -32,7 +32,7 @@
       name: 'Actually an orange',
       age: 12,
       job: 'Scammer',
-      images: ['/app/images/testpic1.jpg', '/images/testpic2.jpg'],
+      images: ['/app/images/testpic1.jpg', '/app/images/testpic2.jpg'],
       distance: 2455,
       description: 'Follow me on my totally banana-related Instagram 📸'
     }
