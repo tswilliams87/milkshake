@@ -5,7 +5,7 @@
       name: 'Saba',
       age: 25,
       job: 'Phillippines',
-      images: ['/images/testpic4.jpg', '/images/testpic2.jpg', '/images/testpic1.jpg'],
+      images: ['/app/images/testpic4.jpg', '/app/images/testpic2.jpg', '/app/images/testpic1.jpg'],
       distance: 25,
       description: 'Swipe for me! You’ll find me very ap-peel-ing'
     },
@@ -14,7 +14,7 @@
       name: 'Plantain',
       age: 28,
       job: 'Nicaragua',
-      images: ['/images/testpic2.jpg', '/images/testpic4.jpg'],
+      images: ['/app/images/testpic2.jpg', '/app/images/testpic4.jpg'],
       distance: 4,
       description: 'Lorem ipsum dolor sit amet...'
     },
@@ -23,7 +23,7 @@
       name: 'Banan',
       age: 21,
       job: 'Finnland',
-      images: ['/images/testpic3.jpg', '/images/testpic2.jpg'],
+      images: ['/app/images/testpic3.jpg', '/images/testpic2.jpg'],
       distance: 9,
       description: 'I like fruits!'
     },
@@ -32,7 +32,7 @@
       name: 'Actually an orange',
       age: 12,
       job: 'Scammer',
-      images: ['/images/testpic1.jpg', '/images/testpic2.jpg'],
+      images: ['/app/images/testpic1.jpg', '/images/testpic2.jpg'],
       distance: 2455,
       description: 'Follow me on my totally banana-related Instagram 📸'
     }

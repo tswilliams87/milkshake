@@ -4,20 +4,10 @@
   <meta charset="utf-8">
   <title>Milkshake</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta property="og:title" content="Milkshake" />
-  <meta name="twitter:title" content="Milkshake" />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://milkshake.com/" />
-  <meta property="og:image" content="/images/bigbanan.jpg" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:image" content="/images/bigbanan.jpg" />
-  <meta property="og:description" content="It’s like Tinder, but for 🍌 — now called Milkshake!" />
-  <meta name="twitter:description" content="It’s like Tinder, but for 🍌 — now called Milkshake!" />
-  <meta name="twitter:site" content="MilkshakeApp" />
   <link href="https://fonts.googleapis.com/css?family=Nunito+Sans" rel="stylesheet">
-  <link rel="stylesheet" href="/styles.css">
-  <link rel="manifest" href="/manifest.json">
-  <link rel="icon" href="/images/banana.png">
+  <link rel="stylesheet" href="/app/styles.css">
+  <link rel="manifest" href="/app/manifest.json">
+  <link rel="icon" href="/app/images/banana.png">
 </head>
 <body>
 
@@ -28,15 +18,12 @@
       <p class="copyright">Made with 🍌 by <a href="https://twitter.com/DasSurma">Surma</a>, Code on <a href="https://github.com/tswilliams87/milkshake">GitHub</a></p>
     </header>
 
-    <!-- These are the swipeable banana cards -->
     <tinderforbananas-item class="item item--top">
       <picture></picture>
       <div class="item__details">
         <span class="item__details__name"></span>,
-        <span class="item__details__age"></span>
-        <br>
-        <span class="item__details__job"></span>
-        <br>
+        <span class="item__details__age"></span><br>
+        <span class="item__details__job"></span><br>
         <span class="item__details__distance"></span>
       </div>
     </tinderforbananas-item>
@@ -45,10 +32,8 @@
       <picture></picture>
       <div class="item__details">
         <span class="item__details__name"></span>,
-        <span class="item__details__age"></span>
-        <br>
-        <span class="item__details__job"></span>
-        <br>
+        <span class="item__details__age"></span><br>
+        <span class="item__details__job"></span><br>
         <span class="item__details__distance"></span>
       </div>
     </tinderforbananas-item>
@@ -71,14 +56,14 @@
   </section>
 </main>
 
-<!-- Correct load order -->
-<script src="/custom-elements.min.js" defer></script>
-<script src="/helper.js" defer></script>
-<script src="/ce-details.js" defer></script>
-<script src="/ce-carousel.js" defer></script>
-<script src="/ce-item.js" defer></script>
-<script src="/app.js" defer></script>
-<script src="/sw.js" defer></script>
+<!-- Scripts must match /app paths -->
+<script src="/app/custom-elements.min.js" defer></script>
+<script src="/app/helper.js" defer></script>
+<script src="/app/ce-details.js" defer></script>
+<script src="/app/ce-carousel.js" defer></script>
+<script src="/app/ce-item.js" defer></script>
+<script src="/app/app.js" defer></script>
+<script src="/app/sw.js" defer></script>
 
 </body>
 </html>
