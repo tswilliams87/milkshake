@@ -1,143 +1,123 @@
-customElements.define('tinderforbananas-item', class extends HTMLElement {
-  static get observedAttributes() { 
-    return ['inmovable']; 
-  }
-
+class TinderForBananasItem extends HTMLElement {
   constructor() {
     super();
-    this._dragging = false; 
-    this.startX = 0;
-    this.startY = 0;
+    this.attachShadow({ mode: 'open' });
 
-    this._startDrag = this._startDrag.bind(this);
-    this._stopDrag = this._stopDrag.bind(this);
-    this._drag = this._drag.bind(this);
-    this._data = {};
-    this._selected = 0;
+    this.shadowRoot.innerHTML = `
+      <style>
+        :host {
+          display: block;
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          will-change: transform;
+          border-radius: 10px;
+          overflow: hidden;
+          box-shadow: 0 0 15px rgba(0,0,0,0.2);
+          background: white;
+          touch-action: pan-y;
+        }
 
+        picture {
+          display: block;
+          background-size: cover;
+          background-position: center;
+          height: 75%;
+        }
+
+        .item__details {
+          padding: 10px;
+          font-family: 'Nunito Sans', sans-serif;
+        }
+      </style>
+      <picture></picture>
+      <div class="item__details">
+        <span class="item__details__name"></span>,
+        <span class="item__details__age"></span><br />
+        <span class="item__details__job"></span><br />
+        <span class="item__details__distance"></span>
+      </div>
+    `;
+
+    this._startX = 0;
+    this._currentX = 0;
+    this._dragging = false;
+
+    this._onPointerDown = this._onPointerDown.bind(this);
+    this._onPointerMove = this._onPointerMove.bind(this);
+    this._onPointerUp = this._onPointerUp.bind(this);
   }
 
   connectedCallback() {
-    this.addEventListener('mousedown', this._startDrag);
-    document.addEventListener('mouseup', this._stopDrag); 
-    document.addEventListener('mousemove', this._drag); 
-    this.addEventListener('touchstart', this._startDrag);
-    document.addEventListener('touchend', this._stopDrag); 
-    document.addEventListener('touchmove', this._drag);
-
-    this._actions = Array.from(this.querySelectorAll('.action'));
-    this.onResize();
+    this.addEventListener('pointerdown', this._onPointerDown);
+    this.addEventListener('pointermove', this._onPointerMove);
+    this.addEventListener('pointerup', this._onPointerUp);
+    this.addEventListener('pointercancel', this._onPointerUp);
   }
 
-  onResize() {
-    this._gBCR = this.getBoundingClientRect();
-    this._rotationLerp = lerp(0, this._gBCR.width/2, 0, 10, {noClamp: true});
-    this._nopeOpacityLerp = lerp(0, -this._gBCR.width/3, 0, 1);
-    this._likeOpacityLerp = lerp(0, this._gBCR.width/3, 0, 1);
-    this._superlikeOpacityLerp = lerp(-this._gBCR.height/8, -this._gBCR.height/8 - this._gBCR.height/3, 0, 1);
+  disconnectedCallback() {
+    this.removeEventListener('pointerdown', this._onPointerDown);
+    this.removeEventListener('pointermove', this._onPointerMove);
+    this.removeEventListener('pointerup', this._onPointerUp);
+    this.removeEventListener('pointercancel', this._onPointerUp);
+  }
+
+  set data(val) {
+    this._data = val;
+    this._updateBindings();
   }
 
   get data() {
     return this._data;
   }
 
-  set data(value) {
-    this._data = value;
-    this._updateBindings();
-  }
-
   get selected() {
-    return this._selected;
+    return 0;
   }
 
-  set selected(value) {
-    this._selected = value;
-    this._updateBindings();
-  }
   _updateBindings() {
-    if (!this.data) return;
-  
-    const nameEl = this.querySelector('.item__details__name');
-    if (nameEl) nameEl.textContent = `${this.data.name}`;
-  
-    const ageEl = this.querySelector('.item__details__age');
-    if (ageEl) ageEl.textContent = `${this.data.age}`;
-  
-    const jobEl = this.querySelector('.item__details__job');
-    if (jobEl) jobEl.textContent = `${this.data.job}`;
-  
-    const distanceEl = this.querySelector('.item__details__distance');
-    if (distanceEl) distanceEl.textContent = `${this.data.distance}km away`;
-  
-    const picture = this.querySelector('picture');
-    if (picture) picture.style.backgroundImage = `url('${this.data.images[this.selected]}')`;
-  }
-  
+    const d = this.data;
+    if (!d) return;
 
-  attributeChangedCallback(name, oldValue, newValue) {
-    this._inmovable = newValue !== null;
+    const root = this.shadowRoot;
+
+    root.querySelector('.item__details__name').textContent = d.name;
+    root.querySelector('.item__details__age').textContent = d.age;
+    root.querySelector('.item__details__job').textContent = d.job;
+    root.querySelector('.item__details__distance').textContent = `${d.distance}km away`;
+
+    const picture = root.querySelector('picture');
+    picture.style.backgroundImage = `url('${d.images[this.selected]}')`;
   }
 
-  _startDrag(event) {
-    if (this._inmovable) return;
+  _onPointerDown(event) {
+    this._startX = event.clientX;
     this._dragging = true;
-    this.startX = event.clientX || event.touches[0].clientX;
-    this.startY = event.clientY || event.touches[0].clientY;
-    event.preventDefault();
+    this.setPointerCapture(event.pointerId);
   }
 
-  _stopDrag(event) {
-    if (this._inmovable) return;
+  _onPointerMove(event) {
+    if (!this._dragging) return;
+    this._currentX = event.clientX - this._startX;
+    this.style.transform = `translateX(${this._currentX}px) rotate(${this._currentX * 0.05}deg)`;
+  }
+
+  _onPointerUp(event) {
     if (!this._dragging) return;
     this._dragging = false;
-    const deltaX = (event.clientX || event.changedTouches[0].clientX) - this.startX;
-    const deltaY = (event.clientY || event.changedTouches[0].clientY) - this.startY;
+    this.releasePointerCapture(event.pointerId);
 
-    this._actions.forEach(a => a.style.opacity = 0);
-    event.preventDefault();
+    if (Math.abs(this._currentX) > 100) {
+      this.style.transition = 'transform 0.3s ease-out';
+      this.style.transform = `translateX(${this._currentX > 0 ? 1000 : -1000}px) rotate(${this._currentX * 0.1}deg)`;
+      this.dispatchEvent(new CustomEvent('swipe', { detail: { direction: this._currentX > 0 ? 'right' : 'left' } }));
+    } else {
+      this.style.transition = 'transform 0.3s ease-out';
+      this.style.transform = 'translateX(0px) rotate(0deg)';
+    }
 
-    if (this._superlikeOpacityLerp(deltaY) >= 1) return this.superlike();
-    if (this._nopeOpacityLerp(deltaX) >= 1) return this.nope();
-    if (this._likeOpacityLerp(deltaX) >= 1) return this.like();
-    if (deltaX === 0 && deltaY === 0) return this.dispatchEvent(new CustomEvent('details', {detail: this.data, bubbles: true}));
-    return this._animate('initial');
+    this._currentX = 0;
   }
+}
 
-  _drag(event) {
-    if (this._inmovable) return;
-    if (!this._dragging) return;
-
-    const deltaX = (event.clientX || event.touches[0].clientX) - this.startX;
-    const deltaY = (event.clientY || event.touches[0].clientY) - this.startY;
-
-    this.style.transform = `rotate(${this._rotationLerp(deltaX)}deg) translate(${deltaX}px, ${deltaY}px)`;
-    this._actions.find(a => a.classList.contains('action--nope')).style.opacity = this._nopeOpacityLerp(deltaX);
-    this._actions.find(a => a.classList.contains('action--like')).style.opacity = this._likeOpacityLerp(deltaX);
-    this._actions.find(a => a.classList.contains('action--superlike')).style.opacity = this._superlikeOpacityLerp(deltaY);
-    event.preventDefault();
-  }
-
-  _animate(target, opts = {}) {
-    this.style.transition = 'transform 0.3s ease-in-out';
-    return requestAnimationFramePromise()
-      .then(_ => {
-        this.style.transform = target;
-        return transitionEndPromise(this);
-      })
-      .then(_ => {
-        this.style.transition = 'initial';
-      });
-  }
-  like(item) {
-    return this._animate('translateX(200%)', {next: true})
-      .then(_ => this.dispatchEvent(new CustomEvent('swipe', {detail: 'like'})));
-  }
-  nope(item) {
-    return this._animate('translateX(-200%)', {next: true})
-      .then(_ => this.dispatchEvent(new CustomEvent('swipe', {detail: 'nope'})));
-  }
-  superlike(item) {
-    return this._animate('translateY(-200%)', {next: true})
-      .then(_ => this.dispatchEvent(new CustomEvent('swipe', {detail: 'superlike'})));
-  }
-});
+customElements.define('tinderforbananas-item', TinderForBananasItem);

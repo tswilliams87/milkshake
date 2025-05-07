@@ -190,7 +190,7 @@
 
   function installServiceWorker() {
     if (!('serviceWorker' in navigator)) return;
-    navigator.serviceWorker.register('sw.js');
+    navigator.serviceWorker.register('app/sw.js');
   }
 
   function init() {

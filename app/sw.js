@@ -1,23 +1,26 @@
 (function () {
   const VERSION = '{%VERSION%}';
-  const files = [
-    'images/bigbanan.jpg',
-    'images/banana.png',
-    'images/banana.svg',
-    'images/testpic1.jpg',
-    'images/testpic2.jpg',
-    'images/testpic3.jpg',
-    'images/testpic4.jpg',
-    'app.js',
-    'ce-carousel.js',
-    'ce-details.js',
-    'ce-item.js',
-    'custom-elements.min.js',
-    'helper.js',
-    './',
-    'manifest.json',
-    'styles.css'
-  ];
+ const files = [
+  '/app/images/bigbanan.jpg',
+  '/app/images/banana.png',
+  '/app/images/banana.svg',
+  '/app/images/testpic1.jpg',
+  '/app/images/testpic2.jpg',
+  '/app/images/testpic3.jpg',
+  '/app/images/testpic4.jpg',
+  '/app/app.js',
+  '/app/ce-carousel.js',
+  '/app/ce-details.js',
+  '/app/ce-item.js',
+  '/app/custom-elements.min.js',
+  '/app/helper.js',
+  '/app/manifest.json',
+  '/app/styles.css',
+  '/app/index.html',
+  '/app/landing.html',
+  '/app/signup.html'
+];
+
 
   self.oninstall = event => event.waitUntil(
     caches.open(`tinderforbananas-${VERSION}`)
