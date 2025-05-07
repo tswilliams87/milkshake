@@ -11,7 +11,7 @@ const pkg = require('./package.json');
 // CSS build task
 function buildCss() {
   return gulp.src('app/*.css', { base: 'app' })
-    .pipe(gulp.dest('dist'));      // Just copy as-is
+    .pipe(gulp.dest('dist/app'));      // Just copy as-is
 }
 
 
@@ -22,7 +22,7 @@ function buildJs() {
     .pipe(babel({
       presets: ['@babel/preset-env']
     }))
-    .pipe(gulp.dest('dist'));
+    .pipe(gulp.dest('dist/app'));
 }
 
 // HTML build task
@@ -32,13 +32,13 @@ function buildHtml() {
       collapseWhitespace: true,
       removeComments: true
     }))
-    .pipe(gulp.dest('dist'));
+    .pipe(gulp.dest('dist/app'));
 }
 
 // Copy assets
 function copyAssets() {
   return gulp.src(['app/images/**/*', 'app/manifest.json'], { base: 'app' })
-    .pipe(gulp.dest('dist/images'));
+    .pipe(gulp.dest('dist/app/images'));
 }
 
 exports.buildCss = buildCss;
