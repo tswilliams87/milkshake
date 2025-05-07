@@ -42,6 +42,7 @@ class TinderForBananasItem extends HTMLElement {
     this._startX = 0;
     this._currentX = 0;
     this._dragging = false;
+    this._selectedIndex = 0;
 
     this._onPointerDown = this._onPointerDown.bind(this);
     this._onPointerMove = this._onPointerMove.bind(this);
@@ -72,7 +73,12 @@ class TinderForBananasItem extends HTMLElement {
   }
 
   get selected() {
-    return 0;
+    return this._selectedIndex;
+  }
+
+  set selected(val) {
+    this._selectedIndex = val;
+    this._updateBindings();
   }
 
   _updateBindings() {
@@ -87,7 +93,9 @@ class TinderForBananasItem extends HTMLElement {
     root.querySelector('.item__details__distance').textContent = `${d.distance}km away`;
 
     const picture = root.querySelector('picture');
-    picture.style.backgroundImage = `url('${d.images[this.selected]}')`;
+    if (d.images && d.images.length > 0) {
+      picture.style.backgroundImage = `url('${d.images[this.selected]}')`;
+    }
   }
 
   _onPointerDown(event) {

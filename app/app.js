@@ -56,8 +56,10 @@
     top.style.top = next.style.top = `${topR.top}px`;
     top.style.width = next.style.width = `${topR.width}px`;
     top.style.height = next.style.height = `${topR.height}px`;
-    top.onResize();
-    next.onResize();
+    window.addEventListener('resize', () => adjustSwipeItems());
+
+    window.addEventListener('resize', adjustSwipeItems);
+
   }
 
   function updateCards(event) {
