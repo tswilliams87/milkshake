@@ -42,7 +42,6 @@ class TinderForBananasItem extends HTMLElement {
     this._startX = 0;
     this._currentX = 0;
     this._dragging = false;
-    this._selectedIndex = 0;
 
     this._onPointerDown = this._onPointerDown.bind(this);
     this._onPointerMove = this._onPointerMove.bind(this);
@@ -73,11 +72,11 @@ class TinderForBananasItem extends HTMLElement {
   }
 
   get selected() {
-    return this._selectedIndex;
+    return this._selected || 0;
   }
 
   set selected(val) {
-    this._selectedIndex = val;
+    this._selected = val;
     this._updateBindings();
   }
 
