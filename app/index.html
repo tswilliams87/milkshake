@@ -8,14 +8,17 @@
   <link rel="stylesheet" href="/app/styles.css">
   <link rel="manifest" href="/app/manifest.json">
   <link rel="icon" href="/app/images/banana.png">
+  <link rel="apple-touch-icon" href="/app/images/banana.png">
+  
 </head>
 <body>
+  <div class="app-container">
+  <main class="milkshake">
 
-<main class="milkshake">
   <section class="view view--swipelist">
     <header>
       <p>Milkshake</p>
-      <p class="copyright">Made with 🍌 by <a href="https://twitter.com/DasSurma">Surma</a>, Code on <a href="https://github.com/tswilliams87/milkshake">GitHub</a></p>
+      <p class="copyright">Made with 🍌 by <a href="example.com">Surma</a>, Code on <a href="https://github.com/tswilliams87/milkshake">GitHub</a></p>
     </header>
 
     <tinderforbananas-item class="item item--top">
@@ -25,7 +28,7 @@
         <span class="item__details__age"></span><br>
         <span class="item__details__job"></span><br>
         <span class="item__details__distance"></span>
-      </div>
+      
     </tinderforbananas-item>
 
     <tinderforbananas-item class="item item--next hidden" inmovable>
@@ -36,6 +39,7 @@
         <span class="item__details__job"></span><br>
         <span class="item__details__distance"></span>
       </div>
+    </div>
     </tinderforbananas-item>
 
     <div class="controls">
@@ -64,6 +68,7 @@
 <script src="/app/ce-item.js" defer></script>
 <script src="/app/app.js" defer></script>
 <script src="/sw.js" defer></script>
-
+</main>
+</div>
 </body>
 </html>

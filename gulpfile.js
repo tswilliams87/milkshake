@@ -35,7 +35,7 @@ function buildHtml() {
 
 // Copy assets
 function copyAssets() {
-  return gulp.src(['app/images/**/*', 'app/manifest.json'], { base: '/app' })
+  return gulp.src(['app/images/**/*', 'app/manifest.json'], { base: 'app' })
     .pipe(gulp.dest('dist/app'));
 }
 
