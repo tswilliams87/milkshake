@@ -18,7 +18,8 @@
   '/app/styles.css',
   '/app/index.html',
   '/app/landing.html',
-  '/app/signup.html'
+  '/app/signup.html',
+  '/app/sw.js'
 ];
 
 

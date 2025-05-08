@@ -5,7 +5,6 @@ const babel = require('gulp-babel');
 const replace = require('gulp-replace');
 const htmlMinifier = require('gulp-htmlmin');
 
-
 const pkg = require('./package.json');
 
 // CSS build task
@@ -13,7 +12,6 @@ function buildCss() {
   return gulp.src('app/*.css', { base: 'app' })
     .pipe(gulp.dest('dist/app'));      // Just copy as-is
 }
-
 
 // JS build task
 function buildJs() {
@@ -37,12 +35,21 @@ function buildHtml() {
 
 // Copy assets
 function copyAssets() {
-  return gulp.src(['app/images/**/*', 'app/manifest.json'], { base: 'app' })
+  return gulp.src(['app/images/**/*', 'app/manifest.json'], { base: '/app' })
     .pipe(gulp.dest('dist/app'));
+}
+
+// ✅ Copy service worker to dist root
+function copySw() {
+  return gulp.src('app/sw.js')
+    .pipe(gulp.dest('dist'));
 }
 
 exports.buildCss = buildCss;
 exports.buildJs = buildJs;
 exports.buildHtml = buildHtml;
 exports.copyAssets = copyAssets;
-exports.default = gulp.parallel(buildCss, buildJs, buildHtml, copyAssets);
+exports.copySw = copySw;
+
+// ✅ Include copySw in the default build
+exports.default = gulp.parallel(buildCss, buildJs, buildHtml, copyAssets, copySw);
