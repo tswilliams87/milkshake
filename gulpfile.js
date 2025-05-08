@@ -45,6 +45,10 @@ function copySw() {
     .pipe(gulp.dest('dist'));
 }
 
+function copyStyles() {
+  return gulp.src('app/styles.css')
+    .pipe(gulp.dest('dist'));
+}
 exports.buildCss = buildCss;
 exports.buildJs = buildJs;
 exports.buildHtml = buildHtml;
@@ -52,4 +56,4 @@ exports.copyAssets = copyAssets;
 exports.copySw = copySw;
 
 // ✅ Include copySw in the default build
-exports.default = gulp.parallel(buildCss, buildJs, buildHtml, copyAssets, copySw);
+exports.default = gulp.parallel(buildCss, buildJs, buildHtml, copyAssets, copySw,copyStyles);
